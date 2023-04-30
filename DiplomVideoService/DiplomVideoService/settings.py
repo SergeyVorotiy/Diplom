@@ -46,6 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'storages',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google'
 ]
 
 MIDDLEWARE = [
@@ -63,7 +69,7 @@ ROOT_URLCONF = 'DiplomVideoService.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, '/static/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,6 +81,18 @@ TEMPLATES = [
         },
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+
+LOGIN_URL = '/accounts/login/'
+
+SITE_ID = 1
+
 
 WSGI_APPLICATION = 'DiplomVideoService.wsgi.application'
 
